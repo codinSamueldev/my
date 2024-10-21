@@ -1,3 +1,26 @@
 {% extends 'layouts/base.html' %}
 
 {% block title %}Principal{% endblock %}
+
+{% block styles %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="text-3xl text-center font-bold bg-green-300">Nice to see you here, in MY social media : D</h1>
+    <p class="text-center">Welcome back __username__</p>
+
+    <form enctype="multipart/form-data" action="." method="post">
+        {% csrf_token %}
+        <p>Aqui va estar el bonito form para publicar...</p>
+        <!-- {{ form.as_p }} -->
+    </form>
+
+    <section class="container mx-auto p-4">
+        <p>Recent posts:</p>
+    </section>
+
+{% endblock %}
