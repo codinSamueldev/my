@@ -1,0 +1,40 @@
+<style>
+    main{
+        width: 100vw;
+    }
+
+    @media (width >= 600px) {
+        main {
+            width: 50vw;
+        }
+    }
+
+    /* Full-screen menu styles */
+    #fullscreenMenu {
+        display: none; /* Initially hidden */
+    }
+
+    #fullscreenMenu.show {
+        display: flex; /* Show the full-screen menu when active */
+    }
+
+    /* Style for links in the full-screen menu */
+    #fullscreenMenu ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 2rem;
+        transition: color 0.3s ease;
+    }
+
+    #fullscreenMenu ul li a:hover {
+        color: #4FD1C5; /* Hover color for links */
+    }
+
+    /* Style for the close button */
+    #fullscreenMenu button {
+        font-size: 2.5rem;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+</style>

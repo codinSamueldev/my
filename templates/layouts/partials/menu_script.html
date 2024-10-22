@@ -1,0 +1,11 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('hamburger').addEventListener('click', function() {
+            document.getElementById('fullscreenMenu').classList.add('show');
+        });
+
+        document.getElementById('closeMenu').addEventListener('click', function() {
+            document.getElementById('fullscreenMenu').classList.remove('show');
+        });
+    });
+</script>
