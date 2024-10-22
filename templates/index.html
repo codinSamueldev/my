@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
 
 {% block title %}Principal{% endblock %}
 
@@ -10,17 +11,31 @@
 
 {% block content %}
 
-    <h1 class="text-3xl text-center font-bold bg-green-300">Nice to see you here, in MY social media : D</h1>
-    <p class="text-center">Welcome back __username__</p>
+    <h1 class="text-3xl text-center font-bold">Nice to see you here!</h1>
+    <p class="text-center">Welcome back {{ user.username }}</p>
 
     <form enctype="multipart/form-data" action="." method="post">
         {% csrf_token %}
-        <p>Aqui va estar el bonito form para publicar...</p>
-        <!-- {{ form.as_p }} -->
+        <!-- {{ form }} -->
+        {% for f in form %}
+            {{ f }}
+        {% endfor %}
+        <button type="submit">Publicar</button>
     </form>
 
     <section class="container mx-auto p-4">
         <p>Recent posts:</p>
+        {% for p in posts %}
+            <section>
+                {{ p }}
+                {% if p.picture %}
+                    <img src="{{ p.picture.url }}" alt="" srcset="">
+                {% else %}
+                    <p>Paila mi hermano, no pic</p>
+                {% endif %}
+                <i>{{ p.pub_date }}</i>
+            </section>
+        {% endfor %}
     </section>
 
 {% endblock %}
