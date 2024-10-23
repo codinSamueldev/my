@@ -1,0 +1,23 @@
+<section class="">
+    {% for p in posts %}
+        <section class="bg-white shadow-md rounded px-8 pt-6 pb-8 my-8">
+            
+            <figure>
+                <img src="" alt="user picture" srcset="">
+            </figure>
+
+            <p>{{ user.username }}__username__</p>
+
+            <i>{{ p.pub_date|date }}</i>
+            
+            <p class="mt-2 max-w-sm">{{ p }}</p>
+            
+            {% if p.picture %}
+                <figure class="mt-2 lg:w-5/6 lg:block lg:mx-auto">
+                    <img src="{{ p.picture.url }}" alt="" srcset="">
+                </figure>
+            {% endif %}
+
+        </section>
+    {% endfor %}
+</section>
