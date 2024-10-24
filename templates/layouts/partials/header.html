@@ -37,7 +37,7 @@
                     </a>
                     <a
                     class="block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition"
-                    href="#"
+                    href="{% url 'register' %}"
                     >
                         Register
                     </a>
@@ -59,12 +59,12 @@
 <nav id="fullscreenMenu" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
     <button class="absolute top-8 right-8 text-white text-3xl" id="closeMenu">&times;</button>
     <ul class="text-white text-3xl space-y-6 text-center">
-    <li><a href="#">Home</a></li>
+    <li><a href="{% url 'home' %}">Home</a></li>
     {% if user.is_authenticated %}
     <li><a href="#">Add product</a></li>
     {% else %}
         <li><a href="#">Login</a></li>
-        <li><a href="#">Register</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
     {% endif %}
     </ul>
 </nav>
