@@ -63,7 +63,6 @@ PASSWORD_HASHERS = [
   'django.contrib.auth.hashers.MD5PasswordHasher',
   'django.contrib.auth.hashers.UnsaltedSHA1PasswordHasher',
   'django.contrib.auth.hashers.UnsaltedMD5PasswordHasher',
-  'django.contrib.auth.hashers.CryptPasswordHasher',
 ]
 
 ROOT_URLCONF = 'my.urls'
@@ -120,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'America/Bogota'
 
