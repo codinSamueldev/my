@@ -21,7 +21,7 @@ class UserManager(BaseUserManager):
 
 class UserModel(AbstractBaseUser):
     username = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=12)
+    password = models.CharField(max_length=128)
     email = models.EmailField(unique=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     bio = models.TextField(max_length=250, blank=True)
@@ -37,7 +37,7 @@ class UserModel(AbstractBaseUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'password', 'email']
+    REQUIRED_FIELDS = ['username']
 
     def __str__(self):
         return self.username
