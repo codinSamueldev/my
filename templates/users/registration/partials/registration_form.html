@@ -8,7 +8,7 @@
             {% if f.errors %}
                 <ul>
                     {% for err in f.errors %}
-                        <li>{{ err }}</li>
+                        <li class="bg-red-500 p-1 my-1 mx-auto text-center rounded-lg">{{ err|cut:"User model with this" }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}

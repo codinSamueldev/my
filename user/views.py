@@ -7,7 +7,7 @@ from .forms import RegistrationForm
 def registration(request):
     if request.method == "GET":
         form = RegistrationForm()
-        return render(request, "users/registration.html", {"form": form})
+        return render(request, "users/registration/registration.html", {"form": form})
 
     if request.method == "POST":
         form = RegistrationForm(request.POST)
@@ -22,5 +22,5 @@ def registration(request):
             # messages.success(request, "Great, successful registration :D")
             return HttpResponseRedirect("/")
         else:
-            return render(request, "users/registration.html", {"form": form})
+            return render(request, "users/registration/registration.html", {"form": form})
         
