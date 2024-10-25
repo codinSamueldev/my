@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth import authenticate, login, logout
 
 from .forms import RegistrationForm
 
@@ -23,4 +24,33 @@ def registration(request):
             return HttpResponseRedirect("/")
         else:
             return render(request, "users/registration/registration.html", {"form": form})
+
+
+def login_view(request):
+    
+    if request.method == 'GET':
+        return render(request, "users/login/login.html", {})
+    
+    
+    if request.method == 'POST':
+        email = request.POST.get("email", None)
+        password = request.POST.get("password", None)
+
+        user = authenticate(request, username=email, password=password)
         
+        print("\n", user)
+
+        if user is not None:
+            login(request, user)
+            
+            return HttpResponseRedirect("/")
+        else:
+            err_msg = "We could not log you in, make sure email and password is typed correctly"
+            
+            return render(request, "users/login/login.html", {"err_msg": err_msg})
+
+
+def logout_view(request):
+    logout(request)
+
+    return HttpResponseRedirect("/")

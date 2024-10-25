@@ -151,6 +151,9 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
+# Define which user model should Django use
+AUTH_USER_MODEL = 'user.UserModel'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
