@@ -150,6 +150,7 @@ MEDIA_URL = '/media/'
 # Auth redirections.
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+LOGIN_URL = "login"
 
 # Define which user model should Django use
 AUTH_USER_MODEL = 'user.UserModel'
