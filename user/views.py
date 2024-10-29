@@ -36,16 +36,14 @@ def login_view(request):
         email = request.POST.get("email", None)
         password = request.POST.get("password", None)
 
-        user = authenticate(request, username=email, password=password)
-        
-        print("\n", user)
+        user = authenticate(request, email=email, password=password)
 
         if user is not None:
             login(request, user)
             
             return HttpResponseRedirect("/")
         else:
-            err_msg = "We could not log you in, make sure email and password is typed correctly"
+            err_msg = "We could not log you in, make sure email and password are typed correctly"
             
             return render(request, "users/login/login.html", {"err_msg": err_msg})
 
