@@ -18,7 +18,9 @@ class PostFormView(FormView):
 
 
     def form_valid(self, form):
-        form.save()
+        post = form.save(commit=False)
+        post.posted_by = self.request.user # Associate the post with the current user.
+        post.save()
 
         return super().form_valid(form)
 

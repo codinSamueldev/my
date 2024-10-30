@@ -1,12 +1,23 @@
+{% load static %}
 <section class="">
     {% for p in posts %}
         <section class="bg-white shadow-md rounded px-8 pt-6 pb-8 my-8">
             
-            <figure>
-                <img src="" alt="user picture" srcset="">
-            </figure>
+            <div id="poster" class="flex items-center gap-4">
 
-            <p>{{ user.username }}__username__</p>
+                {% if p.posted_by.profile_picture %}
+                    <figure class="w-6">
+                        <img src="{{ p.posted_by.profile_picture.url }}" alt="{{ p.posted_by.username }} profile picture" class="rounded-full">
+                    </figure>
+                {% else %}
+                    <figure class="w-6">
+                        <img src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
+                    </figure>
+                {% endif %}
+    
+                <p>{{ p.posted_by.username|default:"Anonymous" }}</p>
+
+            </div>
 
             <i>{{ p.pub_date|date }}</i>
             
