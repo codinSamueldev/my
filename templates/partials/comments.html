@@ -1,0 +1,8 @@
+{% for c in p.postcommentsmodel_set.all %}
+    <div>
+        <p>{{ c.comment }}</p>
+        <p>{{ c.commented_by }}</p>
+    </div>
+    {% empty %}
+        <p>If you are logged in, be the first to leave a comment</p>
+{% endfor %}
