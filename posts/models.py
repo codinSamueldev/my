@@ -21,7 +21,7 @@ class PostCommentsModel(models.Model):
     picture = models.ImageField(upload_to="comments_imgs/", verbose_name="Comment picture/image")
     comm_date = models.DateTimeField(auto_now_add=True, verbose_name="Commented on")
     post = models.ForeignKey(PostModel, on_delete=models.CASCADE)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    commented_by = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.comment

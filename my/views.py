@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView
 
-from posts.forms import PostForm
-from posts.models import PostModel
+from posts.forms import PostForm, PostCommentsForm
+from posts.models import PostModel, PostCommentsModel
 
 class PostFormView(FormView):
     template_name = "index.html"
@@ -23,4 +23,11 @@ class PostFormView(FormView):
         post.save()
 
         return super().form_valid(form)
+
+"""
+class PostCommentsView(FormView):
+    template_name = "index.html"
+    form_class = PostCommentsForm
+    success_url = "/" 
+"""
 
