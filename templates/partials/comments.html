@@ -1,11 +1,11 @@
 {% load static %}
 
 
+<!-- * From Uiverse.io by zanina-yassine */  -->
 <span class="title">Comments</span>
 
 {% for c in p.postcommentsmodel_set.all %}
 
-    <!-- * From Uiverse.io by zanina-yassine */  -->
     <div class="card">
         <div class="comments">
             <div class="comment-container">
@@ -34,6 +34,6 @@
     </div>
 
     {% empty %}
-        <p class="mt-2">If you are logged in, be the first to leave a comment</p>
+        <p class="mt-2">No comments yet...</p>
 
 {% endfor %}

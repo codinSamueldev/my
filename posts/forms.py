@@ -16,6 +16,7 @@ class PostForm(ModelForm):
 class PostCommentsForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields["comment"].widget.attrs.update(placeholder="Type a comment here...")
         self.fields["comment"].required = False
         self.fields["picture"].required = False
     
