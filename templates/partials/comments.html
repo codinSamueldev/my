@@ -1,7 +1,27 @@
+{% load static %}
+
 {% for c in p.postcommentsmodel_set.all %}
+
+    <div id="poster" class="mt-4 flex flex-wrap items-center gap-4">
+
+        {% if p.posted_by.profile_picture %}
+            <figure class="w-6">
+                <img loading="lazy" src="{{ c.commented_by.profile_picture.url }}" alt="{{ c.commented_by.username }} profile picture" class="rounded-full">
+            </figure>
+        {% else %}
+            <figure class="w-6">
+                <img loading="lazy" src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
+            </figure>
+        {% endif %}
+
+        <p>{{ c.commented_by.username|default:"Anonymous" }}</p>
+
+        <p class="lg:ml-20">{{ c.comm_date }}</p>
+
+    </div>
+
     <div>
-        <p>{{ c.comment }}</p>
-        <p>{{ c.commented_by }}</p>
+        <p class="my-2">{{ c.comment }}</p>
     </div>
     {% empty %}
         <p>If you are logged in, be the first to leave a comment</p>
