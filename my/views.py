@@ -12,7 +12,7 @@ class PostFormView(FormView):
 
 
     def get(self, request):
-        posts = PostModel.objects.all().prefetch_related('postcommentsmodel_set')
+        posts = PostModel.objects.all()
         comments = PostCommentsModel.objects.all()
 
         comment_form = PostCommentsForm()
@@ -50,7 +50,7 @@ class PostFormView(FormView):
                 return redirect("home")
         
         
-        posts = PostModel.objects.all().prefetch_related('postcommentsmodel_set')
+        posts = PostModel.objects.all()
         comments = PostCommentsModel.objects.all()
 
         return render(request, self.template_name, {'posts': posts, 'form': post_form, 'comments': comments, 'comment_form': comment_form})
