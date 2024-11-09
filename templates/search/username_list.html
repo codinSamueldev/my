@@ -15,7 +15,7 @@
                             <path d="M16.72 17.78a.75.75 0 1 0 1.06-1.06l-1.06 1.06ZM9 14.5A5.5 5.5 0 0 1 3.5 9H2a7 7 0 0 0 7 7v-1.5ZM3.5 9A5.5 5.5 0 0 1 9 3.5V2a7 7 0 0 0-7 7h1.5ZM9 3.5A5.5 5.5 0 0 1 14.5 9H16a7 7 0 0 0-7-7v1.5Zm3.89 10.45 3.83 3.83 1.06-1.06-3.83-3.83-1.06 1.06ZM14.5 9a5.48 5.48 0 0 1-1.61 3.89l1.06 1.06A6.98 6.98 0 0 0 16 9h-1.5Zm-1.61 3.89A5.48 5.48 0 0 1 9 14.5V16a6.98 6.98 0 0 0 4.95-2.05l-1.06-1.06Z"></path>
                             </svg>
                         </div>
-                        <input type="text" name="username_query" class="w-full max-w-[160px] bg-white pl-1 text-base font-semibold outline-0" placeholder="e.g. papi" id="">
+                        <input type="text" name="keywords" class="w-full max-w-[160px] bg-white pl-1 text-base font-semibold outline-0" placeholder="e.g. papi" id="">
                         <input type="submit" value="Search" class="bg-blue-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors">
                     </div>
                 </div>
@@ -27,11 +27,79 @@
         <h2>Results for "{{ query|escape }}":</h2>
 
         {% if results %}
-            <ul>
+            <section>
+                <!-- /* Card from Uiverse.io by seyed-mohsen-mousavi */  -->
                 {% for user in results %}
-                <li>{{ user|escape }}</li>
+ 
+                <div
+                id="home-template"
+                class="relative rounded-xl overflow-hidden flex flex-col items-center shadow-lg bg-white font-Roboto-light my-0 mx-auto mb-4"
+                >
+                <div class="h-24 w-full bg-green-400"></div>
+                <div class="top-16 z-10 flex items-center flex-col gap-4 px-5 py-5">
+                    <div class="">
+                        {% if p.posted_by.profile_picture %}
+                            <figure class="w-6">
+                                <img loading="lazy" src="{{ user.profile_picture.url }}" alt="{{ user }} profile picture" class="rounded-full">
+                            </figure>
+                        {% else %}
+                            <figure class="w-6">
+                                <img loading="lazy" src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
+                            </figure>
+                        {% endif %}
+                    </div>
+
+                    <div class="flex items-center flex-col">
+                    <p title="name" class="text-black font-Roboto-md">{{ user.username|escape }}</p>
+                    <p title="bio" class="text-xs text-gray-500 font-medium">
+                        {{ user.bio }}
+                    </p>
+                    </div>
+
+                    <div class="flex items-center gap-3">
+                    <button
+                        class="bg-green-400 transition-all gradient text-[15px] text-white px-3 py-[6px] rounded-full flex items-center gap-1"
+                    >
+                        Followed
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4 h-4"
+                        >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m4.5 12.75 6 6 9-13.5"
+                        ></path>
+                        </svg>
+                    </button>
+                    <button
+                        class="bg-gray-200/65 hover:bg-gray-200 transition-colors p-2 rounded-full"
+                    >
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-5 h-5"
+                        >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"
+                        ></path>
+                        </svg>
+                    </button>
+                    </div>
+                </div>
+                </div>
+
                 {% endfor %}
-            </ul>
+            </section>
         {%  else  %}
             <p>No users found</p>
         {% endif %}

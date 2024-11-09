@@ -9,7 +9,7 @@ from user.models import UserModel
 def search_username(request):
     #username_list = UserModel.objects.all().filter(username__icontains=username)
 
-    query = request.GET.get('username_query', '')
+    query = request.GET.get('keywords', '')
     if query:
         qset = (
             Q(username__icontains=query)
