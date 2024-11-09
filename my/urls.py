@@ -19,12 +19,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from search import views as search_views
 from . import views
 
 
 urlpatterns = [
     path('', views.PostFormView.as_view(), name="home"),
     path('account/', include('user.urls'), name="account"),
+    path('search/', search_views.search_username, name="search"),
     path('admin/', admin.site.urls),
 ]
 
