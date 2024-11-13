@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+
+    {% if profile.profile_picture %}
+        <figure class="w-6">
+            <img loading="lazy" src="{{ user.profile_picture.url }}" alt="{{ user }} profile picture" class="rounded-full">
+        </figure>
+    {% else %}
+        <figure class="w-6">
+            <img loading="lazy" src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
+        </figure>
+    {% endif %}
+
+    <h1 class="text-3xl">{{ profile.username }}</h1>
+
+    <p>{{ profile.bio }} {{ profile.id }}</p>
+
+    <ul>
+        {% for p in posts %}
+            
+            {% include 'partials/posts.html' %}
+            
+        {% empty %}
+
+            <p>You have not posted anything yet :c</p>
+        
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}

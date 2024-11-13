@@ -1,8 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
 
 from .forms import RegistrationForm
+from .models import UserModel
+from posts.models import PostModel
+
 
 # Create your views here.
 def registration(request):
@@ -52,3 +56,17 @@ def logout_view(request):
     logout(request)
 
     return HttpResponseRedirect("/")
+
+
+def my_profile(request):
+
+    if request.user.is_anonymous:
+        return HttpResponseRedirect(reverse("login"))
+
+    profile = UserModel.objects.get(username=request.user)
+
+    posts = PostModel.objects.all().filter(posted_by=profile.id)
+
+    return render(request, "users/profiles/my_profile.html", {'profile': profile, 'posts': posts})
+
+
