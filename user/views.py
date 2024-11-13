@@ -15,7 +15,7 @@ def registration(request):
         return render(request, "users/registration/registration.html", {"form": form})
 
     if request.method == "POST":
-        form = RegistrationForm(request.POST)
+        form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save(commit=False)
             password = request.POST.get('password', None)
