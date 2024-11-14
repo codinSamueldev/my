@@ -29,6 +29,15 @@
                 <p class="comment-content">
                     {{ c.comment }}
                 </p>
+
+                {% if c.picture %}
+
+                    <figure class="lg:w-1/2">
+                        <img src="{{ c.picture.url }}" alt="{{ c.commented_by.username }} commment picture" loading="lazy">
+                    </figure>
+
+                {% endif %}
+
             </div>
         </div>
     </div>
