@@ -12,11 +12,11 @@
                 <div class="user">
                     <div class="user-pic">
                         {% if p.posted_by.profile_picture %}
-                            <figure class="w-6">
+                            <figure>
                                 <img loading="lazy" src="{{ c.commented_by.profile_picture.url }}" alt="{{ c.commented_by.username }} profile picture" class="rounded-full">
                             </figure>
                         {% else %}
-                            <figure class="w-6">
+                            <figure>
                                 <img loading="lazy" src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
                             </figure>
                         {% endif %}
