@@ -2,22 +2,27 @@
 <section class="">
     {% for p in posts %}
         <section class="bg-white shadow-md rounded px-8 pt-6 pb-8 my-8">
-            
-            <div id="poster" class="flex items-center gap-4">
 
-                {% if p.posted_by.profile_picture %}
-                    <figure class="w-10">
-                        <img src="{{ p.posted_by.profile_picture.url }}" alt="{{ p.posted_by.username }} profile picture" class="rounded-full">
-                    </figure>
-                {% else %}
-                    <figure class="w-10">
-                        <img src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
-                    </figure>
-                {% endif %}
+            <a href="{% url 'user_profile' p.posted_by.username %}" target="_blank" rel="noopener noreferrer">
+
+                <div id="poster" class="flex items-center gap-4">
     
-                <p>{{ p.posted_by.username|default:"Anonymous" }}</p>
+                    {% if p.posted_by.profile_picture %}
+                        <figure class="w-10">
+                            <img src="{{ p.posted_by.profile_picture.url }}" alt="{{ p.posted_by.username }} profile picture" class="rounded-full">
+                        </figure>
+                    {% else %}
+                        <figure class="w-10">
+                            <img src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
+                        </figure>
+                    {% endif %}
+        
+                    <p>{{ p.posted_by.username|default:"Anonymous" }}</p>
+    
+                </div>
 
-            </div>
+            </a>
+            
 
             <i>{{ p.pub_date|date }}</i>
             

@@ -10,19 +10,23 @@
         <div class="comments">
             <div class="comment-container">
                 <div class="user">
-                    <div class="user-pic">
-                        {% if p.posted_by.profile_picture %}
-                            <figure>
-                                <img loading="lazy" src="{{ c.commented_by.profile_picture.url }}" alt="{{ c.commented_by.username }} profile picture" class="rounded-full">
-                            </figure>
-                        {% else %}
-                            <figure>
-                                <img loading="lazy" src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
-                            </figure>
-                        {% endif %}
-                    </div>
+                    <a href="{% url 'user_profile' c.commented_by.username %}" target="_blank" rel="noopener noreferrer">
+                        <div class="user-pic">
+                            {% if p.posted_by.profile_picture %}
+                                <figure>
+                                    <img loading="lazy" src="{{ c.commented_by.profile_picture.url }}" alt="{{ c.commented_by.username }} profile picture" class="rounded-full">
+                                </figure>
+                            {% else %}
+                                <figure>
+                                    <img loading="lazy" src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
+                                </figure>
+                            {% endif %}
+                        </div>
+                    </a>
                     <div class="user-info">
-                        <span>{{ c.commented_by.username|default:"Anonymous" }}</span>
+                        <a href="{% url 'user_profile' c.commented_by.username %}" target="_blank" rel="noopener noreferrer">
+                            <span>{{ c.commented_by.username|default:"Anonymous" }}</span>
+                        </a>
                         <p>{{ c.comm_date }}</p>
                     </div>
                 </div>
