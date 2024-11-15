@@ -9,11 +9,11 @@
     
                     {% if p.posted_by.profile_picture %}
                         <figure class="w-10">
-                            <img src="{{ p.posted_by.profile_picture.url }}" alt="{{ p.posted_by.username }} profile picture" class="rounded-full">
+                            <img src="{{ p.posted_by.profile_picture.url }}" alt="{{ p.posted_by.username }} profile picture" loading="lazy" class="rounded-full">
                         </figure>
                     {% else %}
                         <figure class="w-10">
-                            <img src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
+                            <img src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" loading="lazy" class="rounded-full">
                         </figure>
                     {% endif %}
         
@@ -30,7 +30,7 @@
             
             {% if p.picture %}
                 <figure class="mt-2 flex justify-center lg:w-5/6 lg:mx-auto">
-                    <img src="{{ p.picture.url }}" alt="" srcset="">
+                    <img src="{{ p.picture.url }}" alt="" loading="lazy">
                 </figure>
             {% endif %}
 
