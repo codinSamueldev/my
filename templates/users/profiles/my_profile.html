@@ -1,35 +1,78 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
-{% block title %}Search{% endblock %}
+{% block title %}Profile{% endblock %}
 
 {% block content %}
 
-    {% if profile.profile_picture %}
-        <figure class="w-6">
-            <img loading="lazy" src="{{ user.profile_picture.url }}" alt="{{ user }} profile picture" class="rounded-full">
-        </figure>
-    {% else %}
-        <figure class="w-6">
-            <img loading="lazy" src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
-        </figure>
-    {% endif %}
+    <section class="my-0 mx-auto p-4">
 
-    <h1 class="text-3xl">{{ profile.username }}</h1>
+        {% if profile.profile_picture %}
+            <figure class="mt-2 flex justify-center w-5/6 mx-auto">
+                <img loading="lazy" src="{{ user.profile_picture.url }}" alt="{{ user }} profile picture" class="rounded-full">
+            </figure>
+        {% else %}
+            <figure class="mt-2 flex justify-center w-5/6 mx-auto">
+                <img loading="lazy" src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" class="rounded-full">
+            </figure>
+        {% endif %}
+    
+        <h1 class="text-3xl text-center">{{ profile.username }}</h1>
+    
+        <p class="text-center">{{ profile.bio }}</p>
+    
+        <ul>
+            <h3 class="text-1xl text-center mt-4">Your posts:</h3>
+            {% for p in posts %}
+                <div class="lg:w-1/2 lg:mx-auto">
 
-    <p>{{ profile.bio }}</p>
-
-    <ul>
-        {% for p in posts %}
+                    <section class="bg-white shadow-md rounded px-8 pt-6 pb-8 my-8">
             
-            {% include 'partials/posts.html' %}
+                        <div id="poster" class="flex items-center gap-4">
             
-        {% empty %}
+                            {% if p.posted_by.profile_picture %}
+                                <figure class="w-10">
+                                    <img src="{{ p.posted_by.profile_picture.url }}" alt="{{ p.posted_by.username }} profile picture" loading="lazy" class="rounded-full">
+                                </figure>
+                            {% else %}
+                                <figure class="w-10">
+                                    <img src="{% static 'icons/default_user_pic.webp' %}" alt="default profile picture" loading="lazy" class="rounded-full">
+                                </figure>
+                            {% endif %}
+                
+                            <p>{{ p.posted_by.username|default:"Anonymous" }}</p>
+            
+                        </div>
+            
+                        
+            
+                        <i>{{ p.pub_date|date }}</i>
+                        
+                        <p class="mt-2 max-w-sm">{{ p }}</p>
+                        
+                        {% if p.picture %}
+                            <figure class="mt-2 flex justify-center lg:w-5/6 lg:mx-auto">
+                                <img src="{{ p.picture.url }}" alt="" loading="lazy">
+                            </figure>
+                        {% endif %}
+            
+                        <span class="flex items-center my-4 mx-auto">
+                            <span class="h-px flex-1 bg-gray-400"></span>
+                            <span class="h-px flex-1 bg-gray-400"></span>
+                        </span>
+            
+                    </section>
+                
+                </div>
+                
+            {% empty %}
+    
+                <p class="text-center">You have not posted anything yet :c</p>
+            
+            {% endfor %}
+        </ul>
 
-            <p>You have not posted anything yet :c</p>
-        
-        {% endfor %}
-    </ul>
+    </section>
 
 
 {% endblock %}

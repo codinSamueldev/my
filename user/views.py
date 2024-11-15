@@ -72,8 +72,10 @@ def my_profile(request):
 
 def user_profile(request, username):
     username_found = UserModel.objects.get(username=username)
+    
+    posts = PostModel.objects.all().filter(posted_by=username_found.id)
 
-    return render(request, "users/profiles/users_profile.html", {'user_found': username_found})
+    return render(request, "users/profiles/users_profile.html", {'user_found': username_found, 'posts': posts})
 
 
 
