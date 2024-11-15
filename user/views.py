@@ -70,3 +70,10 @@ def my_profile(request):
     return render(request, "users/profiles/my_profile.html", {'profile': profile, 'posts': posts})
 
 
+def user_profile(request, username):
+    username_found = UserModel.objects.get(username=username)
+
+    return render(request, "users/profiles/users_profile.html", {'user_found': username_found})
+
+
+
